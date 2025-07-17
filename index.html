@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slide Deck Automation Guide</title>
     <!-- Google Fonts - Inter for a clean, modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN for utility-first styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -17,47 +17,36 @@
         }
         /* Custom Tailwind-like classes for consistent section styling */
         .content-section {
-            @apply bg-white p-8 md:p-10 rounded-xl shadow-lg mb-12 border border-gray-100 transition-all duration-300 ease-in-out hover:shadow-xl;
+            @apply bg-white p-8 md:p-12 rounded-2xl shadow-2xl mb-16 border border-gray-100 transition-all duration-500 ease-in-out transform hover:scale-[1.005] hover:shadow-3xl;
+            /* Added a subtle transform on hover for a more dynamic feel */
         }
         .section-title {
-            @apply text-3xl md:text-4xl font-extrabold text-gray-900 mb-6 border-b-2 border-blue-200 pb-3;
+            @apply text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 pb-4 relative;
+            /* Added relative for pseudo-element underline */
+        }
+        .section-title::after {
+            content: '';
+            @apply absolute bottom-0 left-0 w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full;
+            /* Creative gradient underline */
         }
         .subsection-title {
-            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-5 mt-8;
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6 mt-10 border-l-4 border-blue-400 pl-4;
+            /* Distinct left border for sub-sections */
         }
         .paragraph {
             @apply text-gray-700 leading-relaxed text-lg mb-6;
         }
         .list-item {
-            @apply text-gray-700 text-lg mb-3;
+            @apply text-gray-700 text-lg mb-3 leading-relaxed; /* Increased line-height for lists */
         }
         .code-block {
-            @apply bg-gray-50 p-6 rounded-lg text-base font-mono overflow-x-auto border border-gray-200 shadow-inner;
-        }
-        .image-container {
-            @apply my-8 flex justify-center;
-        }
-        .image-container img {
-            @apply rounded-xl shadow-md max-w-full h-auto border border-gray-200 transition-transform duration-300 ease-in-out hover:scale-[1.01]; /* Subtle hover effect */
-        }
-        /* Custom gradient for placeholder images */
-        .placeholder-gradient {
-            background: linear-gradient(to right top, #6EE7B7, #3B82F6); /* Green to Blue gradient */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: 600;
-            text-align: center;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
-            width: 100%;
-            height: 100%;
+            @apply bg-gray-900 text-white p-6 rounded-lg text-base font-mono overflow-x-auto border border-gray-700 shadow-inner;
+            /* Darker, more prominent code blocks */
         }
         /* Style for navigation links hover effect */
         .nav-link {
-            @apply relative text-white text-lg font-medium px-4 py-2 rounded-lg transition-colors duration-300 ease-in-out hover:bg-blue-700 hover:shadow-md;
+            @apply relative text-white text-lg font-medium px-5 py-3 rounded-xl transition-all duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg transform hover:-translate-y-0.5;
+            /* More pronounced hover effect with slight lift */
         }
         .nav-link::after {
             content: '';
@@ -69,11 +58,11 @@
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-800">
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 text-gray-800">
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-blue-700 to-blue-900 text-white p-6 shadow-2xl">
+    <header class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white p-6 shadow-2xl">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-4xl font-extrabold mb-4 md:mb-0 tracking-tight">Slide Deck Automation Guide</h1>
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 md:mb-0 tracking-tight">Slide Deck Automation Guide</h1>
             <!-- Navigation Menu -->
             <nav>
                 <ul class="flex flex-wrap justify-center space-x-2 md:space-x-6">
@@ -121,21 +110,18 @@
                     <strong class="font-semibold text-blue-700">Google Slides:</strong> The canvas for your final, automated presentations. Watch your data transform into polished, professional slides.
                 </li>
                 <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Apps Script:</strong> The magic behind the scenes. This powerful development platform is natively integrated with Google Slides and Sheets. Access it simply by navigating to "Extensions" then "Apps Script" within your Google document.
-                    <div class="image-container w-full md:w-3/4 lg:w-2/3 mx-auto">
-                        <div class="placeholder-gradient aspect-video flex items-center justify-center p-4">
-                            <span class="text-xl md:text-2xl font-bold">Apps Script Menu Location</span>
-                        </div>
-                    </div>
+                    <strong class="font-semibold text-blue-700">Apps Script:</strong> The magic behind the scenes. This powerful development platform is natively integrated with Google Slides and Sheets. To access Apps Script, navigate to "Extensions" then "Apps Script" within your Google document.
                 </li>
             </ul>
 
             <h3 class="subsection-title mt-10">Authorizing Apps Script Projects</h3>
             <p class="paragraph">
                 Before your Apps Script project can work its magic, it needs permission to interact with your Google files.
-                Always grant the necessary authorizations by clicking the "Review permissions" and "Continue" buttons when prompted:
+                When setting up a new Apps Script project, you will be prompted to grant authorization. Click "Review permissions" to proceed.
             </p>
-        
+            <p class="paragraph">
+                Then, you will be asked to allow access to your Google Account. Click "Continue" to grant the necessary permissions.
+            </p>
         </section>
 
         <!-- How it Works Section -->
@@ -185,7 +171,9 @@
             </p>
             <div class="code-block">
                 <pre><code>Among the top 10 EAs closed in [Quarter] M1+M2:
-[percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) of the top 10 EA Deals were from [sector] ([percent of prev year]% in PY), followed by [percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) vs. [percent of prev year]% in PY</code></pre>
+[percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) of the top 10 EA Deals were from [sector] ([percent of prev year]% in PY), followed by [percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) vs. [percent of prev year]% in PY
+[percent]% of the top 10 EA Deals were Repeat ([percent]% in PY) and [percent]% were New ([percent]% in PY)
+[STRING company of concern] value capture is below [percent]% due to [STRING reasoning: manual input]</code></pre>
             </div>
 
             <h3 class="subsection-title mt-10">Mastering Placeholder Design: Best Practices</h3>
@@ -204,15 +192,8 @@
                 Here's a comprehensive example of how to structure your prompt to Gemini, ensuring all necessary information is conveyed for successful code generation:
             </p>
             <p class="paragraph">
-                <strong class="font-semibold text-red-600">IMPORTANT:</strong> Always verify that your Google Sheet ID, Google Slides ID, and the exact sheet name for your data are accurately provided within the code generated by Gemini. These variables are crucial for the script to locate and interact with your documents.
+                <strong class="font-semibold text-red-600">IMPORTANT:</strong> Always verify that your Google Sheet ID, Google Slides ID, and the exact sheet name for your data are accurately provided within the code generated by Gemini. These variables are crucial for the script to locate and interact with your documents. The Apps Script code will require your Spreadsheet ID and the exact Sheet Name for your data. Ensure these are accurately provided, as shown in the example below.
             </p>
-            <div class="image-container w-full md:w-3/4 lg:w-2/3 mx-auto">
-                <div class="placeholder-gradient aspect-video flex items-center justify-center p-4">
-                    <span class="text-xl md:text-2xl font-bold">Spreadsheet ID & Sheet Name Example</span>
-                </div>
-            </div>
-
-            <h3 class="subsection-title mt-10">The Complete Prompt Template:</h3>
             <div class="code-block">
                 <pre><code>"Hello Gemini. Please generate the complete Google Apps Script code for my automated reporting pipeline.
 
@@ -260,13 +241,8 @@ Please use these references to create my code for Apps Script. Thank you”</cod
                 <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded font-mono">=IMPORTRANGE(link, range)</code>
                 function in Google Sheets is your best friend. This powerful function ensures your data
                 automatically updates as source information changes, maintaining a live, referential link
-                without any manual intervention once set up.
+                without any manual intervention once set up. The `IMPORTRANGE` function is used to bring data into Google Sheets. Its syntax requires the link to the source sheet and the specific range, as demonstrated in the example below.
             </p>
-            <div class="image-container w-full md:w-3/4 lg:w-2/3 mx-auto">
-                <div class="placeholder-gradient aspect-video flex items-center justify-center p-4">
-                    <span class="text-xl md:text-2xl font-bold">IMPORTRANGE Function Example</span>
-                </div>
-            </div>
             <h3 class="subsection-title mt-10">Key Considerations for <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded font-mono">IMPORTRANGE</code>:</h3>
             <ul class="list-disc pl-8 space-y-3 mb-6">
                 <li class="list-item"><strong>Precise Range Definition:</strong> When specifying the range of cells, always include the exact sheet name followed by an exclamation mark and then the cell range (e.g., <code>"Sheet Name!A1:B10"</code>).</li>
@@ -353,7 +329,7 @@ Strategic [month] QTD [percent]%, highest attrition since [manual enter fiscal y
                         <tr class="bg-blue-100 text-left text-blue-800 uppercase text-sm leading-normal">
                             <th class="py-4 px-6 text-left rounded-tl-lg">Slides + Apps Script</th>
                             <th class="py-4 px-6 text-left">Sheets + Apps Script</th>
-                            <th class="py-4 px-6 text-left rounded-tr-lg">Docs + Apps Script</th>
+                            <th class="py-4 px-6 text-left">Docs + Apps Script</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700 text-base font-light">
