@@ -58,13 +58,13 @@
             </h1>
             <nav>
                 <ul class="flex flex-wrap justify-center items-center space-x-6">
-                    <li><a href="#introduction" class="nav-link">Intro</a></li>
-                    <li><a href="#tools" class="nav-link">Tools</a></li>
-                    <li><a href="#videos" class="nav-link">Videos</a></li>
-                    <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
-                    <li><a href="#prompting" class="nav-link">Prompting</a></li>
-                    <li><a href="#linking-sheets" class="nav-link">Linking Sheets</a></li>
-                    <li><a href="#placeholders" class="nav-link">Placeholders</a></li>
+                    <li><a href="#introduction" class="nav-link" style="color: white;">Intro</a></li>
+                    <li><a href="#tools" class="nav-link style="color: white;">Tools</a></li>
+                    <li><a href="#videos" class="nav-link style="color: white;">Videos</a></li>
+                    <li><a href="#how-it-works" class="nav-link style="color: white;">How it Works</a></li>
+                    <li><a href="#prompting" class="nav-link style="color: white;">Prompting</a></li>
+                    <li><a href="#linking-sheets" class="nav-link style="color: white;">Linking Sheets</a></li>
+                    <li><a href="#placeholders" class="nav-link style="color: white;">Placeholders</a></li>
                 </ul>
             </nav>
         </div>
@@ -261,16 +261,20 @@ Please include an onOpen() function to create a menu to run this script. Thank y
             <h3 class="subsection-title">Top 10 EA Deals Slide</h3>
             <div class="code-block">
                 <pre><code>Among the top 10 EAs closed in {{quarter}} M1+M2:
-{{sector_percent}}% (${{sector_value_M}}M) of the top 10 EA Deals were from {{top_sector}} ({{py_sector_percent}}% in PY), followed by {{second_sector_percent}}% (${{second_sector_value_M}}M) vs. {{py_second_sector_percent}}% in PY.</code></pre>
+{{sector_percent}}% (${{sector_value_M}}M) of the top 10 EA Deals were from {{top_sector}} ({{py_sector_percent}}% in PY), </code></pre>
+                <pre><code>followed by {{second_sector_percent}}% (${{second_sector_value_M}}M) vs. {{py_second_sector_percent}}% in PY.</code></pre>  
             </div>
 
             <h3 class="subsection-title">Trending Discount Slide</h3>
             <div class="code-block">
-                <pre><code>Total {{quarter}} NAM Discount at {{total_discount_percent}}%, {{yoy_direction}} {{yoy_points}} pts Y/Y, driven by both Renewal {{renewal_direction}} {{renewal_points}} pts (led by {{renewal_leader_sector}}) and TNB {{tnb_direction}} {{tnb_points}} pts (led by {{tnb_leader_sector}}).</code></pre>
+                <pre><code>Total {{quarter}} NAM Discount at {{total_discount_percent}}%, {{yoy_direction}} {{yoy_points}} pts Y/Y, driven by both </code></pre>
+                <pre><code>Renewal {{renewal_direction}} {{renewal_points}} pts (led by {{renewal_leader_sector}}) and TNB {{tnb_direction}}</code></pre> 
+                <pre><code>{{tnb_points}} pts (led by {{tnb_leader_sector}}).</code></pre>
             </div>
         </section>
 
     <hr/>
+        <br><br>
 
 <section id="reference" class="content-section text-center">
     <h2 class="section-title" style="text-align: center; display: flex; justify-content: center;">Reference Materials 📚</h2>
