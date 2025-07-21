@@ -42,8 +42,8 @@
             @apply bg-gray-900 text-gray-200 p-6 rounded-2xl text-base font-mono overflow-x-auto border border-gray-700 shadow-lg;
         }
         .nav-link {
-            @apply text-gray-300 hover:text-white transition-colors duration-200 ease-in-out text-base font-medium;
-        }
+            @apply text-white hover:text-cyan-400 transition-colors duration-200 ease-in-out text-base font-medium;
+        }    
         .video-card {
             @apply bg-white rounded-2xl shadow-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 ease-in-out;
         }
@@ -100,17 +100,19 @@
                     <strong class="font-semibold text-blue-600">Apps Script:</strong> The magic behind the scenes. Access it via "Extensions" > "Apps Script" in your Google document to bridge your apps together.
                 </li>
             </ul>
+            <br>
 
-            <h3 class="subsection-title">Authorizing Apps Script Projects</h3>
+            <h3 class="subsection-title font-bold">Authorizing Apps Script Projects</h3>
             <p class="paragraph">
                 Before your script can work, it needs permission to interact with your Google files. When you first run the script, you will be prompted to "Review permissions." Click through the authorization screens to grant the necessary access to your Google Account.
             </p>
         </section>
         
         <hr/>
+        <br>
         
         <section id="videos" class="content-section">
-            <h2 class="section-title">Video Walkthroughs 🎥</h2>
+            <h2 class="section-title font-bold">Video Walkthroughs 🎥</h2>
             <p class="paragraph">
                 Visual learner? These short videos will walk you through the key processes, from the overall workflow to specific setup steps.
             </p>
@@ -166,7 +168,7 @@
         <hr/>
 
         <section id="how-it-works" class="content-section">
-            <h2 class="section-title">How It All Connects</h2>
+            <h2 class="section-title font-bold">How It All Connects</h2>
             <p class="paragraph">
                 The automation begins once you identify recurring slides in your presentations. Your next step is to prompt Gemini to generate the specific Apps Script code that will power your automation, based on the templates you define.
             </p>
@@ -178,9 +180,10 @@
         </section>
         
         <hr/>
+            <br>
         
         <section id="prompting" class="content-section">
-            <h2 class="section-title">Crafting Effective Prompts</h2>
+            <h2 class="section-title font-bold">Crafting Effective Prompts</h2>
             <p class="paragraph">
                 To get the most accurate code from Gemini, follow this structured approach to prompting:
             </p>
@@ -190,8 +193,9 @@
                 <li class="list-item"><strong>Name Metrics Clearly:</strong> Assign descriptive names to each dynamic component (e.g., `yoyPercentChange`).</li>
                 <li class="list-item"><strong>Create Placeholders:</strong> Develop clear, bracketed placeholder phrases for each component (e.g., `[yoyPercentChange]`).</li>
             </ol>
+            <br>
 
-            <h3 class="subsection-title">Full Prompt Structure Example</h3>
+            <h3 class="subsection-title font-bold">Full Prompt Structure Example</h3>
             <p class="paragraph">
                 Here's a comprehensive example of how to structure your prompt for Gemini. This ensures all necessary information is conveyed for successful code generation.
                 <strong class="font-semibold text-red-600">Always verify</strong> your Google Sheet ID, Slide ID, and the exact sheet name are correct in the final code.
@@ -228,9 +232,10 @@ Please include an onOpen() function to create a menu to run this script. Thank y
         </section>
         
         <hr/>
+        <br>
 
         <section id="linking-sheets" class="content-section">
-            <h2 class="section-title">Seamless Data Linking</h2>
+            <h2 class="section-title font-bold">Seamless Data Linking</h2>
             <p class="paragraph">
                 For integrating data from BigQuery or other sources, the
                 <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-mono text-base">=IMPORTRANGE("url", "range_string")</code>
@@ -244,9 +249,10 @@ Please include an onOpen() function to create a menu to run this script. Thank y
         </section>
         
         <hr/>
+        <br>
 
         <section id="placeholders" class="content-section">
-            <h2 class="section-title">Practical Placeholder Examples</h2>
+            <h2 class="section-title font-bold">Practical Placeholder Examples</h2>
             <p class="paragraph">
                 Explore these examples of how placeholders are designed for common business commentaries. Use these as a template for your own solutions. Note the use of clear, descriptive placeholder names.
             </p>
