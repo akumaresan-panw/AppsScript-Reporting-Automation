@@ -4,75 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slide Deck Automation Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Apply Inter font family to the entire body */
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Smooth scroll for navigation links */
+        /* Apply Inter font family and smooth scrolling */
+        html {
             scroll-behavior: smooth;
         }
-        /* Custom Tailwind-like classes for consistent section styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Custom Tailwind-like classes for consistent, modern section styling */
         .content-section {
-            @apply bg-white p-8 md:p-12 rounded-2xl shadow-2xl mb-16 border border-gray-100 transition-all duration-500 ease-in-out transform hover:scale-[1.005] hover:shadow-3xl;
-            /* Added a subtle transform on hover for a more dynamic feel */
+            @apply bg-white/60 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-xl mb-16 border border-gray-200/80 transition-all duration-300 ease-in-out;
         }
         .section-title {
-            @apply text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 pb-4 relative;
-            /* Added relative for pseudo-element underline */
+            @apply text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 pb-4 relative tracking-tight;
         }
         .section-title::after {
             content: '';
-            @apply absolute bottom-0 left-0 w-24 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full;
-            /* Creative gradient underline */
+            @apply absolute bottom-0 left-0 w-24 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full;
         }
         .subsection-title {
-            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6 mt-10 border-l-4 border-blue-400 pl-4;
-            /* Distinct left border for sub-sections */
+            @apply text-2xl md:text-3xl font-bold text-gray-800 mb-6 mt-12 border-l-4 border-cyan-400 pl-4;
         }
         .paragraph {
-            @apply text-gray-700 leading-relaxed text-lg mb-6;
+            @apply text-gray-600 leading-relaxed text-lg mb-6 max-w-4xl;
         }
         .list-item {
-            @apply text-gray-700 text-lg mb-3 leading-relaxed; /* Increased line-height for lists */
+            @apply text-gray-600 text-lg mb-4 leading-relaxed;
         }
         .code-block {
-            @apply bg-gray-900 text-white p-6 rounded-lg text-base font-mono overflow-x-auto border border-gray-700 shadow-inner;
-            /* Darker, more prominent code blocks */
+            @apply bg-gray-900 text-gray-200 p-6 rounded-2xl text-base font-mono overflow-x-auto border border-gray-700 shadow-lg;
         }
-        /* Style for navigation links hover effect */
         .nav-link {
-            @apply relative text-white text-lg font-medium px-5 py-3 rounded-xl transition-all duration-300 ease-in-out hover:bg-purple-700 hover:shadow-lg transform hover:-translate-y-0.5;
-            /* More pronounced hover effect with slight lift */
+            @apply text-gray-300 hover:text-white transition-colors duration-200 ease-in-out text-base font-medium;
         }
-        .nav-link::after {
-            content: '';
-            @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-in-out;
-            transform: translateX(-50%);
-        }
-        .nav-link:hover::after {
-            @apply w-2/3;
-        }
-        /* Custom class for bold dark blue headers */
-        .bold-darkblue-header {
-            @apply font-bold text-blue-900;
+        .video-card {
+            @apply bg-white rounded-2xl shadow-lg overflow-hidden group transform hover:-translate-y-2 transition-all duration-300 ease-in-out;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-purple-50 text-gray-800">
-    <header class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white p-6 shadow-2xl">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4 md:mb-0 tracking-tight">Slide Deck Automation Guide</h1>
+<body class="bg-slate-50 text-gray-800">
+
+    <header class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-lg shadow-2xl">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
+            <h1 class="text-3xl font-bold text-white tracking-tighter mb-4 md:mb-0">
+                Slide Deck Automation
+            </h1>
             <nav>
-                <ul class="flex flex-wrap justify-center space-x-2 md:space-x-6">
-                    <li><a href="#introduction" class="nav-link">Introduction</a></li>
+                <ul class="flex flex-wrap justify-center items-center space-x-6">
+                    <li><a href="#introduction" class="nav-link">Intro</a></li>
                     <li><a href="#tools" class="nav-link">Tools</a></li>
+                    <li><a href="#videos" class="nav-link">Videos</a></li>
                     <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
-                    <li><a href="#prompting" class="nav-link">Prompting Gemini</a></li>
+                    <li><a href="#prompting" class="nav-link">Prompting</a></li>
                     <li><a href="#linking-sheets" class="nav-link">Linking Sheets</a></li>
                     <li><a href="#placeholders" class="nav-link">Placeholders</a></li>
-                    <li><a href="#resources" class="nav-link">Resources</a></li>
                 </ul>
             </nav>
         </div>
@@ -80,256 +72,203 @@
 
     <main class="container mx-auto p-6 md:p-10">
 
-        <section id="introduction" class="content-section">
-            <h2 class="section-title bold-darkblue-header">Welcome to the Slide Deck Automation Guide!</h2>
+        <section id="introduction" class="content-section mt-10">
+            <h2 class="section-title">Welcome to the Future of Reporting.</h2>
             <p class="paragraph">
-                Unlock the power of automation for your business reporting. This comprehensive guide will empower you to
-                streamline repetitive tasks, leveraging Google Apps Script to seamlessly connect Google Sheets data with
-                dynamic Google Slides presentations.
+                Unlock the power of automation. This guide empowers you to streamline repetitive reporting by leveraging Google Apps Script to seamlessly connect Google Sheets data with dynamic Google Slides presentations.
             </p>
             <p class="paragraph">
-                By mastering these steps, you'll not only save invaluable time but also ensure unparalleled accuracy and
-                consistency across all your reports. Dive in and transform your workflow!
+                By mastering these steps, you'll save invaluable time and ensure unparalleled accuracy and consistency across all your reports. Let's begin.
             </p>
         </section>
+        
+        <hr/>
 
         <section id="tools" class="content-section">
-            <h2 class="section-title">Essential Tools for Automation</h2>
+            <h2 class="section-title">Essential Tools</h2>
             <p class="paragraph">This powerful workflow is built upon a foundation of key Google tools:</p>
-            <ul class="list-disc pl-8 space-y-3">
+            <ul class="list-disc pl-8 space-y-4">
                 <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Gemini:</strong> Your intelligent co-pilot for code generation. With precise prompting, Gemini creates efficient Apps Script code, requiring absolutely no prior technical experience from your side.
+                    <strong class="font-semibold text-blue-600">Gemini:</strong> Your intelligent co-pilot for code generation. With precise prompting, Gemini creates efficient Apps Script code, requiring no prior technical experience.
                 </li>
                 <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Google Sheets:</strong> The central hub for your data. Design your data templates here, knowing they can be reused consistently for recurring reports, period after period.
+                    <strong class="font-semibold text-blue-600">Google Sheets:</strong> The central hub for your data. Design reusable data templates for recurring reports.
                 </li>
                 <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Google Slides:</strong> The canvas for your final, automated presentations. Watch your data transform into polished, professional slides.
+                    <strong class="font-semibold text-blue-600">Google Slides:</strong> The canvas for your final, automated presentations. Watch your data transform into polished, professional slides.
                 </li>
                 <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Apps Script:</strong> The magic behind the scenes. This powerful development platform is natively integrated with Google Slides and Sheets. To access Apps Script, navigate to "Extensions" then "Apps Script" within your Google document.
+                    <strong class="font-semibold text-blue-600">Apps Script:</strong> The magic behind the scenes. Access it via "Extensions" > "Apps Script" in your Google document to bridge your apps together.
                 </li>
             </ul>
 
-            <h3 class="subsection-title bold-darkblue-header">Authorizing Apps Script Projects</h3>
+            <h3 class="subsection-title">Authorizing Apps Script Projects</h3>
             <p class="paragraph">
-                Before your Apps Script project can work its magic, it needs permission to interact with your Google files.
-                When setting up a new Apps Script project, you will be prompted to grant authorization. Click "Review permissions" to proceed.
-            </p>
-            <p class="paragraph">
-                Then, you will be asked to allow access to your Google Account. Click "Continue" to grant the necessary permissions.
+                Before your script can work, it needs permission to interact with your Google files. When you first run the script, you will be prompted to "Review permissions." Click through the authorization screens to grant the necessary access to your Google Account.
             </p>
         </section>
+        
+        <hr/>
+        
+        <section id="videos" class="content-section">
+            <h2 class="section-title">Video Walkthroughs 🎥</h2>
+            <p class="paragraph">
+                Visual learner? These short videos will walk you through the key processes, from the overall workflow to specific setup steps.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+
+                <div class="video-card">
+                    <a href="https://drive.google.com/file/d/1E3H5hZRVJJZdICX0DY41Pn8ycltmYgdN/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/0E7490/FFFFFF?text=Full+Walkthrough" alt="Full Walkthrough Thumbnail" class="w-full h-auto">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl text-gray-800">Full Automation Walkthrough</h4>
+                        <p class="text-gray-500 mt-2">An end-to-end overview of the entire process.</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <a href="https://drive.google.com/file/d/19026AC3jvOwNlzWIfNvgxjnkN0jzDRFK/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/0284C7/FFFFFF?text=Sheets+Setup" alt="Google Sheets Setup Thumbnail" class="w-full h-auto">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                               <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl text-gray-800">Google Sheets Setup</h4>
+                        <p class="text-gray-500 mt-2">How to structure your data sheet for automation.</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <a href="https://drive.google.com/file/d/1dYAwNhN2umo7lVnGiN8VgTElAUJ9Z62b/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                        <div class="relative">
+                            <img src="https://placehold.co/600x400/0369A1/FFFFFF?text=IMPORTRANGE" alt="IMPORTRANGE Function Thumbnail" class="w-full h-auto">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                               <svg class="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="p-6">
+                        <h4 class="font-bold text-xl text-gray-800">Using IMPORTRANGE</h4>
+                        <p class="text-gray-500 mt-2">Linking data from other spreadsheets dynamically.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr/>
 
         <section id="how-it-works" class="content-section">
-            <h2 class="section-title">Workflow Unveiled: How It All Connects</h2>
+            <h2 class="section-title">How It All Connects</h2>
             <p class="paragraph">
-                The automation journey begins once you've identified the recurring slides in your presentations.
-                Your next step is to collaborate with Gemini, prompting it to generate the specific Apps Script code
-                that will power your automation, all based on the templates you define.
+                The automation begins once you identify recurring slides in your presentations. Your next step is to prompt Gemini to generate the specific Apps Script code that will power your automation, based on the templates you define.
             </p>
             <p class="paragraph">
                 <strong class="font-semibold text-red-600">CRITICAL TIP:</strong> Always instruct Gemini to include an
-                <code class="bg-red-100 text-red-700 px-2 py-1 rounded font-mono">onOpen()</code> function in its code.
-                This vital function ensures that your Apps Script initializes correctly and builds the necessary data
-                pipeline every time your Google Sheet or Slide document is opened.
+                <code class="bg-red-100 text-red-700 px-2 py-1 rounded-md font-mono text-base">onOpen()</code> function in its code.
+                This vital function creates a custom menu in your document, allowing you to run the automation with a single click every time it's opened.
             </p>
         </section>
-
+        
+        <hr/>
+        
         <section id="prompting" class="content-section">
-            <h2 class="section-title">Crafting Effective Prompts for Gemini</h2>
+            <h2 class="section-title">Crafting Effective Prompts</h2>
             <p class="paragraph">
-                To achieve the most accurate and useful code from Gemini for your automation needs, follow this structured approach to prompting:
+                To get the most accurate code from Gemini, follow this structured approach to prompting:
             </p>
-            <ul class="list-disc pl-8 space-y-3 mb-6">
-                <li class="list-item"><strong>Select Your Commentary:</strong> Pinpoint the exact commentary or text block within your slides that you wish to automate.</li>
-                <li class="list-item"><strong>Identify Dynamic Components:</strong> Break down the selected commentary into its changing parts. These typically include:
-                    <ul class="list-circle pl-8 mt-2 space-y-1">
-                        <li class="list-item"><strong class="font-medium">Metrics:</strong> Numerical values, percentages, currency amounts, etc.</li>
-                        <li class="list-item"><strong class="font-medium">Descriptive Verbs:</strong> Words indicating trends like "increased," "decreased," "declined," "remained stable."</li>
-                        <li class="list-item"><strong class="font-medium">Categorical Strings:</strong> Names of sectors, divisions, companies, etc.</li>
-                    </ul>
-                </li>
-                <li class="list-item"><strong>Name Your Metrics Clearly:</strong> Assign a descriptive, unambiguous name to each dynamic component. The more specific your naming, the better Gemini will understand and integrate it into the code.</li>
-                <li class="list-item"><strong>Create Placeholder Phrases:</strong> Develop clear, bracketed placeholder phrases (e.g., <code>[Quarter]</code>, <code>[percent of sector of top 10 ea deals]</code>) for each identified changing component within your commentary.</li>
-            </ul>
+            <ol class="list-decimal pl-8 space-y-4">
+                <li class="list-item"><strong>Select Commentary:</strong> Pinpoint the exact text block in your slides to automate.</li>
+                <li class="list-item"><strong>Identify Dynamics:</strong> Break down the commentary into its changing parts (metrics, verbs, names).</li>
+                <li class="list-item"><strong>Name Metrics Clearly:</strong> Assign descriptive names to each dynamic component (e.g., `yoyPercentChange`).</li>
+                <li class="list-item"><strong>Create Placeholders:</strong> Develop clear, bracketed placeholder phrases for each component (e.g., `[yoyPercentChange]`).</li>
+            </ol>
 
-            <h3 class="subsection-title bold-darkblue-header">From Commentary to Placeholder: A Transformation</h3>
+            <h3 class="subsection-title">Full Prompt Structure Example</h3>
             <p class="paragraph">
-                Witness how a standard commentary sentence is transformed into a flexible, automatable template using placeholders:
-            </p>
-            <p class="paragraph">
-                <strong class="font-semibold text-blue-700">Original Commentary:</strong> Among the top 10 EAs closed in Q3’25 M1+M2: ____% ($____M) of the top 10 EA Deals were from Strategic (___% in PY), followed by Majors ___% ($___M) vs. ___% in PY
-            </p>
-            <p class="paragraph">
-                <strong class="font-semibold text-blue-700">Becomes (with powerful placeholders):</strong>
+                Here's a comprehensive example of how to structure your prompt for Gemini. This ensures all necessary information is conveyed for successful code generation.
+                <strong class="font-semibold text-red-600">Always verify</strong> your Google Sheet ID, Slide ID, and the exact sheet name are correct in the final code.
             </p>
             <div class="code-block">
-                <pre><code>Among the top 10 EAs closed in [Quarter] M1+M2:
-[percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) of the top 10 EA Deals were from [sector] ([percent of prev year]% in PY), followed by [percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) vs. [percent of prev year]% in PY
-[percent]% of the top 10 EA Deals were Repeat ([percent]% in PY) and [percent]% were New ([percent]% in PY)
-[STRING company of concern] value capture is below [percent]% due to [STRING reasoning: manual input]</code></pre>
-            </div>
+                <pre><code>Hello Gemini. Please generate the complete Google Apps Script code for my automated reporting pipeline.
 
-            <h3 class="subsection-title mt-10">Mastering Placeholder Design: Best Practices</h3>
-            <ul class="list-disc pl-8 space-y-3 mb-6">
-                <li class="list-item"><strong>Clarity is King:</strong> Ensure your placeholder names clearly indicate the meaning of the data they represent.
-                    <ul class="list-circle pl-8 mt-2 space-y-1">
-                        <li class="list-item"><strong>GOOD:</strong> Instead of a vague <code>[percent]</code>, use <code>[percent of Y/Y total deals that slipped]</code>.</li>
-                        <li class="list-item"><strong>GOOD:</strong> Rather than a generic <code>[value]</code>, opt for <code>[largest number of new hires by function]</code>.</li>
-                    </ul>
-                </li>
-                <li class="list-item"><strong>Empower Gemini:</strong> Once your placeholders are meticulously defined, feed them into Gemini. The more structured and clear your templates, the more accurately Gemini will generate the Apps Script code you need.</li>
-            </ul>
+## Global Information
+- Spreadsheet ID: 1aBcDeF… (ID from the sheet URL)
+- Sheet Name for Data: “QBR Data”
+- Presentation ID: 2xYxZvW... (ID from the slides URL)
 
-            <h3 class="subsection-title bold-darkblue-header">Structuring Your Prompt: A Full Example</h3>
-            <p class="paragraph">
-                Here's a comprehensive example of how to structure your prompt to Gemini, ensuring all necessary information is conveyed for successful code generation:
-            </p>
-            <p class="paragraph">
-                <strong class="font-semibold text-red-600">IMPORTANT:</strong> Always verify that your Google Sheet ID, Google Slides ID, and the exact sheet name for your data are accurately provided within the code generated by Gemini. These variables are crucial for the script to locate and interact with your documents. The Apps Script code will require your Spreadsheet ID and the exact Sheet Name for your data. Ensure these are accurately provided, as shown in the example below.
-            </p>
-            <div class="code-block">
-                <pre><code>"Hello Gemini. Please generate the complete Google Apps Script code for my automated reporting pipeline.
+## Commentary Block 1
+- Commentary Name: NAM OPEX and HC
+- Slides Placeholder: {{NAM_OPEX_HC}}
+- Sheet Output Cell: C41
+- Data Mapping:
+  - opexAmount: G41, "Total OPEX for the quarter"
+  - headcount: G42, "Current headcount"
+- Output Text Template: "North America OPEX for the quarter was {{opexAmount}} with a headcount of {{headcount}}."
+- AI Analysis Rule: Flag for review if opexAmount > $3.5M
 
-Global Information:
-Spreadsheet ID: 1aBcDeF… (ID lies between /d/ and /edit)
-Sheet Name for Data: “QBR Data” (actual name of sheet within sheets document)
+## Commentary Block 2
+- Commentary Name: Trending Discount
+- Slides Placeholder: {{TRENDING_DISCOUNT}}
+- Sheet Output Cell: C31
+- Data Mapping: 
+  - avgDiscount: G31, "The average discount rate"
+- Output Text Template: "The average discount rate for the quarter was {{avgDiscount}}."
+- AI Analysis Rule: Flag for review if avgDiscount > 22%.
 
-Commentary Block 1:
-Commentary Name: NAM OPEX and HC
-Slides Placeholder: [NAM_OPEX_HC_PLACEHOLDER]
-Sheet Output Cell: C41
-Data Mapping:
-opexAmount: G41, "Total OPEX for the quarter"
-headcount: G42, "Current headcount"
-Output Text Template: "North America OPEX for the quarter was opexAmount with a headcount of headcount."
-AI Analysis Rule:
-Rule: Flag for review if opexAmount is greater than $3.5M
-
-Commentary Block 2:
-Commentary Name: Trending Discount
-Slides Placeholder: [TRENDING_DISCOUNT_PLACEHOLDER]
-Sheet Output Cell: C31
-Data Mapping: avgDiscount: G31, "The average discount rate"
-Output Text Template: "The average discount rate for the quarter was avgDiscount."
-AI Analysis Rule:
-Rule: Flag for review if avgDiscount is greater than 22%.
-
-(Add as many commentaries as you need, if your deck has 5 replicable slides period over period, include all 5 formatted like above)
-
-You should look at the linked user guide in order to structure the way you create the Apps Script code, as the references I've provided you with are tried and true code snippets that do what we want on the business end.
-
-Thank you”</code></pre>
+Please include an onOpen() function to create a menu to run this script. Thank you.</code></pre>
             </div>
         </section>
+        
+        <hr/>
 
         <section id="linking-sheets" class="content-section">
-            <h2 class="section-title">Seamless Data Linking: Google Sheets</h2>
+            <h2 class="section-title">Seamless Data Linking</h2>
             <p class="paragraph">
-                For integrating data from BigQuery or other external sources, the
-                <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded font-mono">=IMPORTRANGE(link, range)</code>
-                function in Google Sheets is your best friend. This powerful function ensures your data
-                automatically updates as source information changes, maintaining a live, referential link
-                without any manual intervention once set up. The `IMPORTRANGE` function is used to bring data into Google Sheets. Its syntax requires the link to the source sheet and the specific range, as demonstrated in the example below.
+                For integrating data from BigQuery or other sources, the
+                <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-mono text-base">=IMPORTRANGE("url", "range_string")</code>
+                function in Google Sheets is essential. It creates a live, referential link that updates automatically.
             </p>
-            <h3 class="subsection-title bold-darkblue-header">Key Considerations for <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded font-mono">IMPORTRANGE</code>:</h3>
-            <ul class="list-disc pl-8 space-y-3 mb-6">
-                <li class="list-item"><strong>Precise Range Definition:</strong> When specifying the range of cells, always include the exact sheet name followed by an exclamation mark and then the cell range (e.g., <code>"Sheet Name!A1:B10"</code>).</li>
-                <li class="list-item"><strong>Example:</strong> To import cells A10:Q53 from a sheet named “Revenue 2025”:
-                    <div class="code-block mt-3">
-                        <pre><code>=IMPORTRANGE(“your_sheet_link”, “Revenue 2025!A10:Q53”)</code></pre>
-                    </div>
-                </li>
-            </ul>
-
-            <h3 class="subsection-title bold-darkblue-header">Pro Tips for Optimal Performance:</h3>
-            <ul class="list-disc pl-8 space-y-3">
-                <li class="list-item"><strong>Import Only Essentials:</strong> Strive to import the minimum necessary data. Overloading your sheet with excessive data points can significantly impact Apps Script's runtime performance.</li>
-                <li class="list-item"><strong>Efficiency is Key:</strong> A lean data import strategy ensures your automation runs swiftly and smoothly.</li>
+            <h3 class="subsection-title">Best Practices for <code class="bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-mono text-base">IMPORTRANGE</code></h3>
+            <ul class="list-disc pl-8 space-y-4">
+                <li class="list-item"><strong>Precise Range:</strong> Always include the exact sheet name followed by an exclamation mark (e.g., <code class="bg-gray-200 px-1 rounded-md">"Revenue 2025!A10:Q53"</code>).</li>
+                <li class="list-item"><strong>Import Only Essentials:</strong> To ensure your script runs quickly, only import the data you absolutely need. A lean data import strategy is key to performance.</li>
             </ul>
         </section>
+        
+        <hr/>
 
         <section id="placeholders" class="content-section">
-            <h2 class="section-title">Practical Placeholder Commentary Examples</h2>
+            <h2 class="section-title">Practical Placeholder Examples</h2>
             <p class="paragraph">
-                Explore these concrete examples of how placeholders are meticulously designed for various common business commentaries.
-                Use these as a robust template to craft your own automation solutions.
+                Explore these examples of how placeholders are designed for common business commentaries. Use these as a template for your own solutions. Note the use of clear, descriptive placeholder names.
             </p>
 
-            <h3 class="subsection-title">NAM MBR - Top 10 EA Deals Slide</h3>
+            <h3 class="subsection-title">Top 10 EA Deals Slide</h3>
             <div class="code-block">
-                <pre><code>[TOP_10_EA_DEALS_PLACEHOLDER]
-Among the top 10 EAs closed in [Quarter] M1+M2
-[percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) of the top 10 EA Deals were from [sector] ([percent of prev year]% in PY), followed by [percent of sector of top 10 ea deals]% ($[dollar value of portion of top 10 ea deals]) vs. [percent of prev year]% in PY
-[percent]% of the top 10 EA Deals were Repeat ([percent]% in PY) and [percent]% were New ([percent]% in PY)
-[STRING company of concern] value capture is below [percent]% due to [STRING reasoning: manual input]</code></pre>
+                <pre><code>Among the top 10 EAs closed in {{quarter}} M1+M2:
+{{sector_percent}}% (${{sector_value_M}}M) of the top 10 EA Deals were from {{top_sector}} ({{py_sector_percent}}% in PY), followed by {{second_sector_percent}}% (${{second_sector_value_M}}M) vs. {{py_second_sector_percent}}% in PY.</code></pre>
             </div>
 
-            <h3 class="subsection-title mt-10">CY vs. PY Top 10 Accounts Slide</h3>
+            <h3 class="subsection-title">Trending Discount Slide</h3>
             <div class="code-block">
-                <pre><code>[CY_VS_PY_TOP10ACCOUNTS_PLACEHOLDER]
-[percent]% of Q3’25 Top 10 accounts were from [sector] ([percent]% in PY) and [sector] [percent]% ([percent]% in PY)
-[sector] contributed [percent]% of the top 10 accounts ([percent]% in PY), followed by [sector] at [percent]% ([percent]% in PY)
-[sector] made up [percent]% of the top 10 accounts TCV ([percent]% in PY), while [sector] made up [percent]% ([percent]% in PY)</code></pre>
-            </div>
-
-            <h3 class="subsection-title mt-10">Trending Discount Slide</h3>
-            <div class="code-block">
-                <pre><code>[TRENDING_DISCOUNT_PLACEHOLDER]
-Total [Quarter] NAM Discount at [percent]%, [up/down based on points] [+/- points] pts Y/Y variance driven by both Renewal [up/down based on points] [+/- points] pts (led by [sector]) and TNB [up/down based on points] [+/- points] pts (led by [sector])
-Total [Quarter] NAM Renewal Discount at [percent]%, [up/down based on points] [+/- points] pts Y/Y; Strategic [up/down based on points] [+/- points] pts Y/Y (e.g. large deal [fill in manually])
-Total [Quarter] TNB Discount at [percent]%,[up/down based on points] [+/- points] pts Y/Y; led by [sector] [up/down based on points] [+/- points] pts Y/Y (e.g. large deal [fill in manually])</code></pre>
-            </div>
-
-            <h3 class="subsection-title mt-10">NAM OPEX and HC Slide</h3>
-            <div class="code-block">
-                <pre><code>[NAM_OPEX_HC_PLACEHOLDER]
-Key takeaways
-[month] total HC:  [total HC]
-[largest # of new hires] new hires in [month], primarily in [division with most new hires] ([2nd largest # number of new hires]), [2nd most new hires division] ([number of new hires div2]) and all other ([number of all other new hires])
-[quarter] end HC Forecast: [forecasted HC]
-[month] Core Sellers HC: [number of core sellers]
-[quarter] seller HC forecast: [forecasted seller HC]
-Seller attrition
-Strategic [month] QTD [percent]%, highest attrition since [manual enter fiscal year]
-[quarter] forecasted attrition rate: [forecasted attrition rate]%,  [points] pts [lower/higher leave as manual option] than [PY same quarter, just take whatever quarter and change year by -1 (q3 24 becomes q3 23)]</code></pre>
-            </div>
-        </section>
-
-        <section id="resources" class="content-section">
-            <h2 class="section-title">Further Resources & Practical Examples</h2>
-            <p class="paragraph">To deepen your understanding and see these concepts in action, refer to these additional resources:</p>
-            <ul class="list-disc pl-8 space-y-3 mb-6">
-                <li class="list-item">
-                    <strong class="font-semibold text-blue-700">Commentary Template for Gemini:</strong> <a href="https://docs.google.com/document/d/1pcgS7whMD2LIMNhkN_b_TXGfBn0IhOSf9sj7yb8YzRA/edit?tab=t.q7zjyctb887i" class="text-blue-600 hover:underline font-medium">User Guide</a> 
-                </li>
-            </ul>
-            <h3 class="subsection-title mt-10">Examples of Automated Report Types:</h3>
-            <div class="overflow-x-auto rounded-lg shadow-md border border-gray-200">
-                <table class="min-w-full bg-white">
-                    <thead>
-                        <tr class="bg-blue-100 text-left text-blue-800 uppercase text-sm leading-normal">
-                            <th class="py-4 px-6 text-left rounded-tl-lg">Slides + Apps Script</th>
-                            <th class="py-4 px-6 text-left">Sheets + Apps Script</th>
-                            <th class="py-4 px-6 text-left">Docs + Apps Script</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-gray-700 text-base font-light">
-                        <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors duration-200">
-                            <td class="py-4 px-6 text-left whitespace-nowrap"><a href="https://docs.google.com/document/d/1RI5qdamIRdPrr0FpS9PjTlHOtRYHCMVwCkCn2tbURBE/edit?tab=t.0" class="text-blue-600 hover:underline font-medium">Weekly Overview Slides</a></td>
-                            <td class="py-4 px-6 text-left"><a href="https://docs.google.com/document/d/1sz-7k8E5waPlA5qXCVfIzpU1QY8xK9-kBfM-DLTeFlw/edit?tab=t.0" class="text-blue-600 hover:underline font-medium">Weekly Overview Sheets</a></td>
-                            <td class="py-4 px-6 text-left"><a href="https://docs.google.com/document/d/1j913gkM8Wj0FGVKYJc5d-A8qunm8iaKK1O2knOecuSo/edit?tab=t.0" class="text-blue-600 hover:underline font-medium">Weekly Overview Docs</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <pre><code>Total {{quarter}} NAM Discount at {{total_discount_percent}}%, {{yoy_direction}} {{yoy_points}} pts Y/Y, driven by both Renewal {{renewal_direction}} {{renewal_points}} pts (led by {{renewal_leader_sector}}) and TNB {{tnb_direction}} {{tnb_points}} pts (led by {{tnb_leader_sector}}).</code></pre>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-gray-900 text-white p-6 text-center text-sm shadow-inner mt-12">
-        <p>&copy; 2025 Slide Deck Automation Guide.</p>
+    <footer class="bg-slate-900 text-gray-400 p-8 text-center text-sm mt-12">
+        <p>&copy; 2025 Slide Deck Automation Guide. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
